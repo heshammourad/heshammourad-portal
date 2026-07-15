@@ -1,5 +1,6 @@
 import { auth, signOut } from "@/auth";
 import Link from "next/link";
+import MonogramLogo from "@/components/MonogramLogo";
 
 export default async function HomePage() {
   const session = await auth();
@@ -17,9 +18,7 @@ export default async function HomePage() {
       {/* Header / Navbar */}
       <header className="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 md:py-8 flex justify-between items-center border-b border-white/5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-500/15">
-            <span className="font-bold text-white text-lg">HM</span>
-          </div>
+          <MonogramLogo size={40} showBg={true} />
           <div>
             <h1 className="text-xl font-bold tracking-tight">Hesham Mourad</h1>
             <p className="text-xs text-neutral-400 font-medium">Workspace Portal</p>

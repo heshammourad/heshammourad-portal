@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1016" />
+      <stop offset="100%" stop-color="#06070a" />
+    </linearGradient>
+
+    <!-- Glowing Monogram Gradient -->
+    <linearGradient id="monogramGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" /> <!-- Violet-400 -->
+      <stop offset="50%" stop-color="#818cf8" /> <!-- Indigo-400 -->
+      <stop offset="100%" stop-color="#60a5fa" /> <!-- Blue-400 -->
+    </linearGradient>
+
+    <!-- Outer Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Smooth Rounded Rect Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#ffffff0d" stroke-width="4" />
+
+  <!-- Monogram Logo Path with Outer Glow -->
+  <g filter="url(#glow)" opacity="0.95">
+    <path
+      d="M 150 145 L 150 367
+         M 150 256 L 256 256
+         M 256 145 L 256 367
+         M 256 145 L 312 265 L 368 145
+         M 368 145 L 368 367"
+      fill="none"
+      stroke="url(#monogramGrad)"
+      stroke-width="36"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>
