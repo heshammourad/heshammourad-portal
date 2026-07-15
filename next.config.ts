@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   async rewrites() {
     const isDev = process.env.NODE_ENV === "development";
     
