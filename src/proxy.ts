@@ -23,6 +23,9 @@ export const proxy = auth((req) => {
     const requestHeaders = new Headers(req.headers);
     requestHeaders.set("host", targetUrl.host);
     requestHeaders.set("x-from-portal", "true");
+    if (process.env.PORTAL_SECRET) {
+      requestHeaders.set("x-portal-secret", process.env.PORTAL_SECRET);
+    }
 
     return NextResponse.rewrite(targetUrl, {
       request: {
@@ -39,6 +42,9 @@ export const proxy = auth((req) => {
     const requestHeaders = new Headers(req.headers);
     requestHeaders.set("host", targetUrl.host);
     requestHeaders.set("x-from-portal", "true");
+    if (process.env.PORTAL_SECRET) {
+      requestHeaders.set("x-portal-secret", process.env.PORTAL_SECRET);
+    }
 
     return NextResponse.rewrite(targetUrl, {
       request: {
