@@ -156,7 +156,75 @@ export default async function HomePage() {
             </div>
           </Link>
 
-          {/* Card 2: Spotify Tools (Public) */}
+          {/* Card 2: Expenses Tracker (Protected) */}
+          <Link
+            href="/expenses-tracker"
+            className="group relative flex flex-col justify-between p-6 md:p-8 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-md shadow-2xl transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.02]"
+          >
+            {/* Absolute hovering glow */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-600/0 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+            <div>
+              {/* Badge & Icon */}
+              <div className="flex justify-between items-start mb-6">
+                <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-emerald-500/20 transition-colors">
+                  <svg
+                    className="w-6 h-6 text-neutral-400 group-hover:text-emerald-400 transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 8v2m0-10e-5c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+
+                {isLoggedIn ? (
+                  <span className="px-2.5 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-xs font-semibold">
+                    Authorized
+                  </span>
+                ) : (
+                  <span className="px-2.5 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400 text-xs font-semibold">
+                    Auth Required
+                  </span>
+                )}
+              </div>
+
+              {/* Title & Desc */}
+              <h3 className="text-2xl font-bold group-hover:text-white transition-colors">
+                Expenses Tracker
+              </h3>
+              <p className="mt-3 text-neutral-400 text-sm leading-relaxed">
+                Personal finance tracker for managing expenses, budgets, and cash flow. Secured behind OAuth check.
+              </p>
+            </div>
+
+            {/* Action text */}
+            <div className="mt-8 flex items-center gap-2 text-sm font-semibold text-neutral-300 group-hover:text-emerald-400 transition-colors">
+              Launch App
+              <svg
+                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </div>
+          </Link>
+
+          {/* Card 3: Spotify Tools (Public) */}
           <Link
             href="/spotify-tools"
             className="group relative flex flex-col justify-between p-6 md:p-8 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-md shadow-2xl transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.02]"

@@ -6,7 +6,34 @@ export const proxy = auth((req) => {
   const isLoggedIn = !!req.auth;
 
   const isReadingList = nextUrl.pathname.startsWith("/reading-list");
+  const isExpensesTracker = nextUrl.pathname.startsWith("/expenses-tracker");
   const isSpotifyTools = nextUrl.pathname.startsWith("/spotify-tools");
+
+  if (isExpensesTracker) {
+    if (!isLoggedIn) {
+      // Redirect to portal login
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("callbackUrl", nextUrl.pathname + nextUrl.search);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    const isDev = process.env.NODE_ENV === "development";
+    const EXPENSES_TRACKER_URL = process.env.EXPENSES_TRACKER_URL || (isDev ? "http://localhost:3003" : "https://heshammourad-expenses-tracker.vercel.app");
+    const targetUrl = new URL(nextUrl.pathname + nextUrl.search, EXPENSES_TRACKER_URL);
+
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set("host", targetUrl.host);
+    requestHeaders.set("x-from-portal", "true");
+    if (process.env.PORTAL_SECRET) {
+      requestHeaders.set("x-portal-secret", process.env.PORTAL_SECRET);
+    }
+
+    return NextResponse.rewrite(targetUrl, {
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
 
   if (isReadingList) {
     if (!isLoggedIn) {
